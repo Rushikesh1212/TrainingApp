@@ -8,10 +8,7 @@ const window = Dimensions.get('window');
 
 export default StyleSheet.create({
   container:{
-    backgroundColor: '#fff',
-    minHeight:'100%',
-    width: window.width,
-    justifyContent:"center"
+    flex:1,
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

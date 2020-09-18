@@ -27,10 +27,22 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      firstName : "",
+      middleName : "",
+      lastName : "",
+      password : "",
     };
   }
 
+  redirectToHome(){
+    var payload ={
+       firstName:this.state.firstName,
+       middleName:this.state.middleName,
+       lastName:this.state.lastName,
+       password:this.state.password
+    }
+    this.props.navigation.navigate('Home',{payload:payload})
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -38,27 +50,36 @@ export default class Login extends Component {
    return (
       <React.Fragment>
         <Header navigation={navigation}/>
-          <Image source={require('../../images/user.jpeg')} />
+        <ScrollView>
          <Input
             placeholder='First Name'
             leftIcon={{ type: 'font-awesome', name: 'user' }}
+            value={this.state.firstName}
+            onChangeText={(firstName)=>this.setState({firstName})}
           />
           <Input
             placeholder='Middle Name'
             leftIcon={{ type: 'font-awesome', name: 'user' }}
+            value={this.state.middleName}
+            onChangeText={(middleName)=>this.setState({middleName})}
           />
-        <Input
-          placeholder='Last Name'
-          leftIcon={{ type: 'font-awesome', name: 'user' }}
-        />
-        <Input 
-          placeholder="Password" secureTextEntry={true}  
-          rightIcon={{ type: 'font-awesome', name: 'eye' }}
+          <Input
+            placeholder='Last Name'
+            leftIcon={{ type: 'font-awesome', name: 'user' }}
+            value={this.state.lastName}
+            onChangeText={(lastName)=>this.setState({lastName})}
           />
-        <Button
-          title="Submit"
-          onPress={()=>this.props.navigation.navigate('Home')}
-        />
+          <Input 
+            placeholder="Password" secureTextEntry={true}  
+            rightIcon={{ type: 'font-awesome', name: 'eye' }}
+            value={this.state.password}
+            onChangeText={(password)=>this.setState({password})}
+            />
+          <Button
+            title="Submit"
+            onPress={()=>this.redirectToHome()}
+          />
+         </ScrollView> 
       </React.Fragment>
     );
 
